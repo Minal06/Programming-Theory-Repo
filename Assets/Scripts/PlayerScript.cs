@@ -21,6 +21,12 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        HandleMovement();
+        BackLineMax();        
+    }
+            
+    void HandleMovement()
+    {
         if (Input.GetKey(ForwardKey))
         {
             MoveUp();
@@ -29,10 +35,7 @@ public class PlayerScript : MonoBehaviour
         {
             MoveDown();
         }
-        BackLineMax();        
     }
-     
-
     void MoveUp()
     {
         transform.Translate(Vector3.forward * Time.deltaTime * speed);
@@ -53,5 +56,12 @@ public class PlayerScript : MonoBehaviour
     void ResetPosition()
     {
         transform.position = new Vector3(baseX, baseY, baseZ);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {       
+            Debug.Log("Score!");
+        ResetPosition();
+                   
     }
 }
