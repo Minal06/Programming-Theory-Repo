@@ -3,27 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
-{
-    public GameObject[] enemyPrefabs;
+{    
     [SerializeField] float spawnPositionX;
     [SerializeField] float spawnPositionY;
     [SerializeField] float spawnPositionZ;
-    [SerializeField] float respawnDelay = 1f;    
-    // Start is called before the first frame update
-   /* void Start()
+    [SerializeField] float respawnDelay = 1f;
+
+    ObjectPoolManager objectPoolManager;
+
+    private void Start()
     {
-        InvokeRepeating("SpawnRandomEnemy", 0, respawnDelay);
+        objectPoolManager = ObjectPoolManager.SharedInstance;
+
+        InvokeRepeating("SpawnEnemy", 0, respawnDelay);
     }
 
-    void SpawnRandomEnemy()
+    /*private void FixedUpdate()
     {
-        Vector3 spawnPos = new Vector3(spawnPositionX, 9, Random.Range(-spawnPositionZ, spawnPositionZ));
-
-        int enemyIndex = Random.Range(0, enemyPrefabs.Length);
-
-        Instantiate(enemyPrefabs[enemyIndex], spawnPos, Quaternion.identity);      
+        objectPoolManager.SpawnFromPool("Normal", transform.position, Quaternion.identity);
     }*/
 
+    void SpawnEnemy()
+    {
+        Vector3 spawnPos = new Vector3(spawnPositionX, spawnPositionY, Random.Range(-spawnPositionZ, spawnPositionZ));
 
-    
+        objectPoolManager.SpawnFromPool("Normal", spawnPos, Quaternion.identity);
+    }
+
+
 }

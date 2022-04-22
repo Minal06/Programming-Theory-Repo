@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class ObjectPoolManager : MonoBehaviour
 {
-    public static ObjectPoolManager SharedInstance { get; private set; }
-    //public List<GameObject> pooledObjects;
-         
+    
+             
     [System.Serializable]
     public class poolClass
     {
@@ -18,11 +17,14 @@ public class ObjectPoolManager : MonoBehaviour
     public List<poolClass> m_Pools; 
     public Dictionary<string, Queue<GameObject>> pooledObjects;
 
-
+    #region Singleton
+    public static ObjectPoolManager SharedInstance { get; private set; }
     private void Awake()
     {
         SharedInstance = this;
     }
+    #endregion
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,14 +42,26 @@ public class ObjectPoolManager : MonoBehaviour
                 obj.transform.SetParent(this.transform);
             }
             pooledObjects.Add(pool.tagToCheck, objectPool);
-        }
-       /* for (int i=0; i<amountToPool; i++)
+        }       
+    }
+
+    public GameObject SpawnFromPool(string tagToCheck, Vector3 position, Quaternion rotation)
+    {
+        if (!pooledObjects.ContainsKey(tagToCheck))
         {
-            GameObject obj = (GameObject)Instantiate(objectToPool);
-            obj.SetActive(false);
-            pooledObjects.Add(obj);
-            obj.transform.SetParent(this.transform);
-        }*/
+            Debug.LogWarning("tag is not correct");
+            return null;
+        }
+
+        GameObject objectToSpawn = pooledObjects[tagToCheck].Dequeue();
+
+        objectToSpawn.SetActive(true);
+        objectToSpawn.transform.position = position;
+        objectToSpawn.transform.rotation = rotation;
+
+        pooledObjects[tagToCheck].Enqueue(objectToSpawn);
+
+        return objectToSpawn;
     }
 
    
