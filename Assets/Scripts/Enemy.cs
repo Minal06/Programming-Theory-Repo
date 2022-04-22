@@ -2,14 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IPooledObjects
 {
     [SerializeField] float speed;
     [SerializeField] float spawnBoundry;
 
-    
-    // Update is called once per frame
-    void Update()
+    public void OnObjectSpawn()
     {
         SpawnCheck();
     }
@@ -19,7 +17,11 @@ public class Enemy : MonoBehaviour
         if (transform.position.x < spawnBoundry)
         {
             MoveRight();
-        }
+        }       
+        /*if (transform.position.x > -spawnBoundry)
+        {
+            MoveLeft();
+        }*/
     }
 
     void MoveRight()
@@ -29,6 +31,6 @@ public class Enemy : MonoBehaviour
 
     void MoveLeft()
     {
-
+        transform.Translate(Vector3.left * Time.deltaTime * speed);
     }
 }

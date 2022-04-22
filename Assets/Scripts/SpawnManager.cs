@@ -16,6 +16,7 @@ public class SpawnManager : MonoBehaviour
         objectPoolManager = ObjectPoolManager.SharedInstance;
 
         InvokeRepeating("SpawnEnemy", 0, respawnDelay);
+        InvokeRepeating("SpawnEnemy2", 0, respawnDelay);
     }
 
     /*private void FixedUpdate()
@@ -24,6 +25,13 @@ public class SpawnManager : MonoBehaviour
     }*/
 
     void SpawnEnemy()
+    {
+        Vector3 spawnPos = new Vector3(-spawnPositionX, spawnPositionY, Random.Range(-spawnPositionZ, spawnPositionZ));
+
+        objectPoolManager.SpawnFromPool("Normal", spawnPos, Quaternion.identity);        
+    }
+
+    void SpawnEnemy2()
     {
         Vector3 spawnPos = new Vector3(spawnPositionX, spawnPositionY, Random.Range(-spawnPositionZ, spawnPositionZ));
 

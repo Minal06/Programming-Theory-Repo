@@ -157,6 +157,9 @@ MonoBehaviour:
   - tagToCheck: Normal
     objectToPool: {fileID: 6869640674323434582, guid: df16bd4281d8836498209dcbd2b3c6e9, type: 3}
     amountToPool: 150
+  - tagToCheck: Big
+    objectToPool: {fileID: 3787570604772034499, guid: e6ade64d48a42d14e8ed719131efc46d, type: 3}
+    amountToPool: 150
 --- !u!114 &458086428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,7 +175,7 @@ MonoBehaviour:
   spawnPositionX: -105
   spawnPositionY: 1
   spawnPositionZ: 30
-  respawnDelay: 1
+  respawnDelay: 0.5
 --- !u!4 &458086429
 Transform:
   m_ObjectHideFlags: 0

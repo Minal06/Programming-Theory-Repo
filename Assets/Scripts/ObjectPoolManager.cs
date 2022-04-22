@@ -59,6 +59,13 @@ public class ObjectPoolManager : MonoBehaviour
         objectToSpawn.transform.position = position;
         objectToSpawn.transform.rotation = rotation;
 
+        IPooledObjects pooledObj = objectToSpawn.GetComponent<IPooledObjects>();
+
+        if (pooledObj !=null)
+        {
+            pooledObj.OnObjectSpawn();
+        }
+
         pooledObjects[tagToCheck].Enqueue(objectToSpawn);
 
         return objectToSpawn;
