@@ -16,9 +16,7 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] float baseZ;
 
 
-
-
-    // Update is called once per frame
+         
     void Update()
     {
         HandleMovement();
@@ -63,6 +61,10 @@ public class PlayerScript : MonoBehaviour
         if(other.tag == "Finish")
         {
             Debug.Log("Score!");            
+        }
+        else
+        {
+            other.gameObject.SetActive(false);
         }
         ResetPosition();
     }

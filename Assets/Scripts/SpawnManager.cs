@@ -35,7 +35,7 @@ public class SpawnManager : MonoBehaviour
     {
         Vector3 spawnPos = new Vector3(spawnPositionX, spawnPositionY, Random.Range(-spawnPositionZ, spawnPositionZ));
 
-        objectPoolManager.SpawnFromPool("Normal", spawnPos, Quaternion.identity);
+        objectPoolManager.SpawnFromPool("Big", spawnPos, Quaternion.identity);
     }
 
 
