@@ -59,9 +59,11 @@ public class PlayerScript : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other)
-    {       
-            Debug.Log("Score!");
+    {     
+        if(other.tag == "Finish")
+        {
+            Debug.Log("Score!");            
+        }
         ResetPosition();
-                   
     }
 }

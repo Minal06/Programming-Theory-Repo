@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static string SetGameTime;
+    public static string setGameTime;
     public static string player1NameInGame;
     public static string player2NameInGame;
     public int gameTime
@@ -16,5 +16,5 @@ public class GameManager : MonoBehaviour
             else { Debug.LogError("Use nrs between 1-9!"); }
         }
     }
-    private int m_gameTime = int.Parse(SetGameTime);
+    private int m_gameTime = int.Parse(setGameTime);
 }
