@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6869640674323434580}
   - component: {fileID: 6869640674323434581}
   - component: {fileID: -4751922126855921668}
-  - component: {fileID: -8579592279843099057}
+  - component: {fileID: 4336254405601588098}
   m_Layer: 0
   m_Name: EnemyNormal
   m_TagString: Normal
@@ -113,7 +113,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &-8579592279843099057
+--- !u!114 &4336254405601588098
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,8 +122,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 6869640674323434582}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c34b652667b7c0e419cf0a3495f46b47, type: 3}
+  m_Script: {fileID: 11500000, guid: 4775be01aac068f49bd63ee861920872, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 60
-  spawnBoundry: 105
+  speed: 50
+  spawnBoundry: 110

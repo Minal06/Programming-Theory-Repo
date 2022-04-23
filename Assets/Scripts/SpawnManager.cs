@@ -7,35 +7,52 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] float spawnPositionX;
     [SerializeField] float spawnPositionY;
     [SerializeField] float spawnPositionZ;
-    [SerializeField] float respawnDelay = 1f;
+    [SerializeField] float spawnSpaceResize;
+    [SerializeField] float respawnDelay;
 
     ObjectPoolManager objectPoolManager;
 
     private void Start()
     {
         objectPoolManager = ObjectPoolManager.SharedInstance;
-
-        InvokeRepeating("SpawnEnemy", 0, respawnDelay);
-        InvokeRepeating("SpawnEnemy2", 0, respawnDelay);
+        SpawnEnemies();
+        
+    }
+    
+    void SpawnEnemies()
+    {
+        InvokeRepeating("SpawnEnemyNormal", 0, respawnDelay);
+        InvokeRepeating("SpawnEnemyBig", 0, respawnDelay);
+        InvokeRepeating("SpawnEnemyFastLeft", 0, respawnDelay);
+        InvokeRepeating("SpawnEnemyFastRight", 0, respawnDelay);
     }
 
-    /*private void FixedUpdate()
-    {
-        objectPoolManager.SpawnFromPool("Normal", transform.position, Quaternion.identity);
-    }*/
-
-    void SpawnEnemy()
+    void SpawnEnemyNormal()
     {
         Vector3 spawnPos = new Vector3(-spawnPositionX, spawnPositionY, Random.Range(-spawnPositionZ, spawnPositionZ));
 
         objectPoolManager.SpawnFromPool("Normal", spawnPos, Quaternion.identity);        
     }
 
-    void SpawnEnemy2()
+    void SpawnEnemyBig()
     {
         Vector3 spawnPos = new Vector3(spawnPositionX, spawnPositionY, Random.Range(-spawnPositionZ, spawnPositionZ));
 
         objectPoolManager.SpawnFromPool("Big", spawnPos, Quaternion.identity);
+    }
+
+    void SpawnEnemyFastLeft()
+    {
+        Vector3 spawnPos = new Vector3(-spawnPositionX, spawnPositionY, Random.Range(spawnPositionZ, (spawnPositionZ+spawnSpaceResize)));
+
+        objectPoolManager.SpawnFromPool("Fast", spawnPos, Quaternion.identity);
+    }
+
+    void SpawnEnemyFastRight()
+    {
+        Vector3 spawnPos = new Vector3(spawnPositionX, spawnPositionY, Random.Range(spawnPositionZ, (spawnPositionZ+spawnSpaceResize)));
+
+        objectPoolManager.SpawnFromPool("FastR", spawnPos, Quaternion.identity);
     }
 
 

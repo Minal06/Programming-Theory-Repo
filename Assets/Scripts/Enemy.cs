@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public abstract class Enemy : MonoBehaviour
 {
     [SerializeField] float speed;
-    [SerializeField] float spawnBoundry;
+    public float spawnBoundry;
 
     void Update()
     {
         SpawnCheck();
     }
 
-    void SpawnCheck()
+    public virtual void SpawnCheck()
     {
         if (transform.position.x < spawnBoundry)
         {
@@ -24,12 +24,12 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void MoveRight()
+    public virtual void MoveRight()
     {
         transform.Translate(Vector3.right * Time.deltaTime * speed);
     }
 
-    void MoveLeft()
+    public virtual void MoveLeft()
     {
         transform.Translate(Vector3.left * Time.deltaTime * speed);
     }
