@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     public GameObject FirstMsgDisplay;
     public Text FirstMsgTimer;
     private int countdownToStart = 3;
-    private bool canStart = false;
+    public bool canStart = false;
 
     [Header("ScoreBoard")]
     public Text FirstPlayerScoreText;
@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     public GameObject FirstPlayerWon;
     public GameObject SecondPlayerWon;
     public GameObject TieScrn;
-    public bool gameOver = false;
+    public bool canPlay = false;
 
     [Header("Game Timer")]
     public float TimeLeft;
@@ -38,13 +38,13 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance != null)
+        /*if (Instance != null)
         {
             Destroy(gameObject);
             return;
-        }
+        }*/
         Instance = this;
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
     }
 
     void StartClocks()
-    {
+    {        
         if (canStart == false && countdownToStart > 0)
         {
             StartCoroutine(FirstMsg());
@@ -109,6 +109,7 @@ public class GameManager : MonoBehaviour
                 FirstMsgDisplay.SetActive(false);
                 TimeLeft -= Time.deltaTime;
                 UpdateTimer(TimeLeft);
+                canPlay = true;
             }
             else
             {
@@ -131,7 +132,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        gameOver = true;
+        canPlay = false;
         GameOverScrn.SetActive(true);
         if (FirstPlayerScore > SecondPlayerScore)
         {
@@ -143,6 +144,6 @@ public class GameManager : MonoBehaviour
         else
         {
             TieScrn.SetActive(true);
-        }
+        }       
     }
 }

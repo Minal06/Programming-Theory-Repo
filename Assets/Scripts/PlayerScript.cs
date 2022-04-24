@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] float baseY;
     [SerializeField] float baseZ;
 
+    [Header("Game Manager settings")]
     private GameManager gameManager;
 
     private void Start()
@@ -31,13 +33,18 @@ public class PlayerScript : MonoBehaviour
             
     void HandleMovement()
     {
-        if (Input.GetKey(ForwardKey))
+        if (Input.GetKey(ForwardKey) && gameManager.canPlay == true)
         {
             MoveUp();
         }
-        if (Input.GetKey(BackwardKey))
+        if (Input.GetKey(BackwardKey) && gameManager.canPlay == true)
         {
             MoveDown();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space) && gameManager.canPlay == false)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
     void MoveUp()
