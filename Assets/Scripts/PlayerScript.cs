@@ -15,8 +15,14 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] float baseY;
     [SerializeField] float baseZ;
 
+    private GameManager gameManager;
 
-         
+    private void Start()
+    {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+    }
+
+
     void Update()
     {
         HandleMovement();
@@ -60,9 +66,11 @@ public class PlayerScript : MonoBehaviour
     {     
         if(other.tag == "Finish")
         {
+            gameManager.ScorePointPlayerOne(1);
             Debug.Log("Player 1 Score!");            
         } else if (other.tag == "Finish2")
         {
+            gameManager.ScorePointPlayerTwo(1);
             Debug.Log("Player 2 Score!");
         }
         else

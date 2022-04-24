@@ -20,7 +20,7 @@ public class MainMenu : MonoBehaviour
         Debug.Log("Game will take:" + timeSet.text);
         GameManager.player1NameInGame = player1Name.text;
         GameManager.player2NameInGame = player2Name.text;
-        GameManager.setGameTime = timeSet.text;
+ //       GameManager.setGameTime = timeSet;
         SceneManager.LoadScene(1);
     }
 
