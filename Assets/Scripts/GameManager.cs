@@ -7,33 +7,33 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {    
     public static GameManager Instance { get; private set; }
+
+    [Header("First Msg setup")]
+    public GameObject FirstMsgDisplay;
+    public Text FirstMsgTimer;
+    private int countdownToStart = 3;
+    private bool canStart = false;
+
+    [Header("ScoreBoard")]
     public Text FirstPlayerScoreText;
     public Text SecondPlayerScoreText;
+    private int FirstPlayerScore;
+    private int SecondPlayerScore;
+    public static string player1NameInGame;
+    public static string player2NameInGame;
 
+    [Header("GameOver Scrn")]
     public GameObject GameOverScrn;
-
     public GameObject FirstPlayerWon;
     public GameObject SecondPlayerWon;
     public GameObject TieScrn;
+    public bool gameOver = false;
 
-    private int FirstPlayerScore;
-    private int SecondPlayerScore;
+    [Header("Game Timer")]
+    public float TimeLeft;
+    public bool TimerOn = false;
+    public Text TimerText;
 
-    public static int setGameTime;
-    public static string player1NameInGame;
-    public static string player2NameInGame;
-    public int gameTime
-    {
-        get { return m_gameTime; }
-        set
-        {
-            if (1 <= value && value <= 9) { m_gameTime = value; }
-            else { Debug.LogError("Use nrs between 1-9!"); setGameTime = 1; }
-        }
-    }
-    private int m_gameTime = setGameTime;
-
-    private bool gameOver = false;
 
 
     private void Awake()
@@ -50,11 +50,36 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         InitializePlayerNames();
+        FirstMsgTimer.text = $"0" + countdownToStart;
+        TimerOn = true;
+        FirstMsgDisplay.SetActive(true);
     }
 
     private void Update()
     {
-        
+        StartClocks();        
+    }
+
+    void StartClocks()
+    {
+        if (canStart == false && countdownToStart > 0)
+        {
+            StartCoroutine(FirstMsg());
+        }
+        else
+        {
+            Timer();
+           
+        }
+    }
+
+    IEnumerator FirstMsg()
+    {
+        canStart = true;
+        yield return new WaitForSeconds(1);
+        countdownToStart -= 1;
+        FirstMsgTimer.text = $"0" + countdownToStart;
+        canStart = false;
     }
 
     public void ScorePointPlayerOne(int point)
@@ -73,6 +98,35 @@ public class GameManager : MonoBehaviour
     {
         FirstPlayerScoreText.text = $"{player1NameInGame} Score : {FirstPlayerScore}";
         SecondPlayerScoreText.text = $"{player2NameInGame} Score : {SecondPlayerScore}";
+    }
+
+    void Timer()
+    {
+        if (TimerOn && countdownToStart == 0)
+        {
+            if (TimeLeft > 0)
+            {
+                FirstMsgDisplay.SetActive(false);
+                TimeLeft -= Time.deltaTime;
+                UpdateTimer(TimeLeft);
+            }
+            else
+            {
+                Debug.Log("gameover");
+                TimeLeft = 0;
+                TimerOn = false;
+                GameOver();
+            }
+        }
+    }
+
+    void UpdateTimer(float currentTime)
+    {
+        currentTime += 1;
+        float minutes = Mathf.FloorToInt(currentTime / 60);
+        float seconds = Mathf.FloorToInt(currentTime % 60);
+
+        TimerText.text = String.Format("{0:00} : {1:00}", minutes, seconds);
     }
 
     public void GameOver()
