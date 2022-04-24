@@ -60,7 +60,10 @@ public class PlayerScript : MonoBehaviour
     {     
         if(other.tag == "Finish")
         {
-            Debug.Log("Score!");            
+            Debug.Log("Player 1 Score!");            
+        } else if (other.tag == "Finish2")
+        {
+            Debug.Log("Player 2 Score!");
         }
         else
         {
