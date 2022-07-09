@@ -1,7 +1,8 @@
 # Programming-Theory-Repo
 
 This was the final test for my Unity Junior Programmer Certificate.
-I had to prepare game from scratch with main focus on *object-oriented programming*.
+
+I had to prepare game from scratch with main focus on **object-oriented programming**.
 
 ## Table of contents
 * [Game](https://github.com/Minal06/Programming-Theory-Repo/blob/main/README.md#game)
