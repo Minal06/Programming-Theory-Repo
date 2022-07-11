@@ -27,11 +27,11 @@ This game project was based on Atari classic Space Race.
 
 I used object pooling for all the obstacles spawning.
 
-Spawned obstacles are checking their positions and start to move accordingly .
+Spawned obstacles are checking their positions and start to move accordingly.
 
 All the players options can be setup and adjusted inside Unity editor. 
 
-I was trying to implement all the Object-oriented programming rules in this game, accordingly to my knowledge.
+I was trying to implement all the Object-oriented programming rules in this game, to the best of my knowledge.
 
 ## Link
 [Space Race clone](https://play.unity.com/mg/other/junior-programmer-last-challenge)
